@@ -1,0 +1,17 @@
+.truchet {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(
+      45deg,
+      black 0%,
+      black var(--t),
+      transparent var(--t)
+    ),
+    linear-gradient(
+      -45deg,
+      black 0%,
+      black calc(1% + var(--t)),
+      transparent calc(1% + var(--t))
+    );
+}
