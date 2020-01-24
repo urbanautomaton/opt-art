@@ -1,8 +1,12 @@
 'use strict';
 
-const Truchet = (t) => (
-  <div className="truchet" style={{ "--t": t }}  />
-);
+const Truchet = (t) => {
+  const adjacent = 0.75 - t * 0.5;
+  const opposite = 0.25 + t * 0.5;
+  const angle = (Math.atan(opposite / adjacent) * 180) / Math.PI;
+
+  return (<div className="truchet" key={t} style={{ "--angle": `${angle}deg` }}  />);
+};
 
 const domContainer = document.querySelector('#container');
 ReactDOM.render([
