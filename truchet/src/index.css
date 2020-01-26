@@ -1,12 +1,17 @@
-.truchet {
-  margin: 2px;
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(
-    var(--angle),
-    black 0%,
-    black 50%,
-    transparent 50%
-  );
+.grid {
+  display: grid;
+  grid-template-columns: repeat(11, 32px);
+  gap: 2px;
+}
+
+.truchet-a {
+  transform: rotate(-90deg);
+}
+
+.truchet-c {
+  transform: rotate(90deg);
+}
+
+.truchet-d {
+  transform: rotate(180deg);
 }

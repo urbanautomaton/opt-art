@@ -1,24 +1,28 @@
 'use strict';
 
-const Truchet = (t) => {
-  const adjacent = 0.75 - t * 0.5;
-  const opposite = 0.25 + t * 0.5;
-  const angle = (Math.atan(opposite / adjacent) * 180) / Math.PI;
+const ORIENTATIONS = ['a', 'b', 'c', 'd'];
 
-  return (<div className="truchet" key={t} style={{ "--angle": `${angle}deg` }}  />);
+const Truchet = ({ t, orientation }) => {
+  const offset = 25 - 50 * t;
+
+  return (
+    <svg className={`truchet-${orientation}`} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points={`100,0 ${50 - offset},${50 - offset} 0,100 0,0`} fill="black" />
+    </svg>
+  );
 };
 
+const Grid = () => (
+  <div className="grid">
+    {
+      ORIENTATIONS.flatMap(orientation => (
+        [...Array(11).keys()].map(i => (
+          <Truchet key={`${orientation}-${i}`} t={i / 10} orientation={orientation} />
+        ))
+      ))
+    }
+  </div>
+);
+
 const domContainer = document.querySelector('#container');
-ReactDOM.render([
-  Truchet(0.0),
-  Truchet(0.1),
-  Truchet(0.2),
-  Truchet(0.3),
-  Truchet(0.4),
-  Truchet(0.5),
-  Truchet(0.6),
-  Truchet(0.7),
-  Truchet(0.8),
-  Truchet(0.9),
-  Truchet(1.0),
-], domContainer);
+ReactDOM.render(<Grid />, domContainer);
